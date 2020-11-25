@@ -1,9 +1,9 @@
 # unitfile-parser
 
-This is a small utility library to parse systemd unitfiles to- and from JavaScript data structures. Three formats are available:
-1. `string`, which is the representation inside a unit file,
+This is a small utility library to parse systemd unitfiles to and from JavaScript data structures. Three formats are available:
+1. `string`, which is the representation inside of a unit file,
 2. `ast`, which is a JS object representation of the parser AST, including comments,
-3. `data`, which is a normalized representation of the data, useful to do general computing. It hast the following format:
+3. `data`, which is a normalized representation of the data, useful to do general computing. It has the following format:
 
 ```
 {
@@ -16,7 +16,7 @@ This is a small utility library to parse systemd unitfiles to- and from JavaScri
 
 Conversions are available in all directions between these formats, with the only external dependency being `chevrotain`.
 
-This package does not know or check whether the logic of a unit file is correct (e.g. are you using the correct names for options, etc.), it only know what the syntax is supposed to be.
+This package does not know or check whether the logic of a unit file is correct (e.g. are you using the correct names for options, etc.), it only knows what the syntax is supposed to be.
 
 ## Usage
 
