@@ -1,4 +1,4 @@
-# systemd-unitfiles
+# unitfile-parser
 
 This is a small utility library to parse systemd unitfiles to- and from JavaScript data structures. Three formats are available:
 1. `string`, which is the representation inside a unit file,
