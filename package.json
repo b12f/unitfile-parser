@@ -7,7 +7,15 @@
   "scripts": {
     "test": "./scripts/run-tests"
   },
-  "author": "",
+  "keywords": [
+      "systemd",
+      "unit",
+      "file",
+      "parse",
+      "parser",
+      "ast"
+    ],
+  "author": "b12f",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "chevrotain": "^7.0.3"
