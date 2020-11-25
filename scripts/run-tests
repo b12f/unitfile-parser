@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+node ./src/spec/string-to-ast.mjs;
+node ./src/spec/ast-to-data.mjs;
+node ./src/spec/data-to-ast.mjs;
+node ./src/spec/ast-to-string.mjs;

@@ -3,10 +3,9 @@ const { CstParser } = chevrotain;
 import {
   tokens,
   Comment,
-  CommentStart,
-  CommentStartNewline,
   Property,
   SectionHeading,
+  Newline,
   Value,
 } from "./Lexer.mjs";
 
@@ -15,24 +14,21 @@ export default class UnitFileParser extends CstParser {
     super(tokens);
     const $ = this;
 
-    $.RULE("commentLine", () => {
-      $.CONSUME(CommentStartNewline);
-      $.CONSUME(Comment);
+    $.RULE("value", () => {
+      $.CONSUME(Value);
     });
 
     $.RULE("comment", () => {
-      $.CONSUME(CommentStart);
       $.CONSUME(Comment);
-    });
-
-    $.RULE("value", () => {
-      $.CONSUME(Value);
     });
 
     $.RULE("sectionHeadingStatement", () => {
       $.CONSUME(SectionHeading);
       $.OPTION(() => {
         $.SUBRULE($.comment);
+      });
+      $.OPTION1(() => {
+        $.CONSUME(Newline);
       });
     });
 
@@ -47,7 +43,7 @@ export default class UnitFileParser extends CstParser {
     $.RULE("sectionStatement", () => {
       $.OR([
         { ALT: () => $.SUBRULE($.propertyStatement) },
-        { ALT: () => $.SUBRULE($.commentLine) },
+        { ALT: () => $.SUBRULE($.comment) },
       ]);
     });
     
@@ -55,6 +51,9 @@ export default class UnitFileParser extends CstParser {
       $.SUBRULE($.sectionHeadingStatement);
       $.MANY(() => {
         $.SUBRULE($.sectionStatement);
+        $.OPTION(() => {
+          $.CONSUME(Newline);
+        });
       });
     });
 
@@ -63,6 +62,7 @@ export default class UnitFileParser extends CstParser {
         $.OR([
           { ALT: () => $.SUBRULE($.section) },
           { ALT: () => $.SUBRULE($.comment) },
+          { ALT: () => $.CONSUME(Newline) },
         ]);
       });
     });

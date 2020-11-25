@@ -1,7 +1,7 @@
-export const content = `[Install]
+export const string = `[Install]
 Description=Test description(1) https://something/? \\# # test`;
 
-export const result = {
+export const ast = {
   type: 'unitFile',
   comments: [],
   sections: [
@@ -20,3 +20,12 @@ export const result = {
     }
   ]
 };
+
+export const data = [
+  {
+    title: 'Install',
+    settings: {
+      Description: 'Test description(1) https://something/? \\#',
+    },
+  }
+];

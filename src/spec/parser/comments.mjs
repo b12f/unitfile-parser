@@ -1,4 +1,5 @@
-export const content = `# Outside comment
+export const string = `# Outside comment
+# Outside comment part 2
 [Unit] # Heading comment
 Description=Idle manager for Wayland # End of value comment
 # Inline comment
@@ -10,9 +11,12 @@ Alias=asdf#Comment Without spaces
 # Comment only in this body
 `;
 
-export const result = {
+export const ast = {
   type: 'unitFile',
-  comments: [ { type: 'comment', value: 'Outside comment' } ],
+  comments: [
+    { type: 'comment', value: 'Outside comment' },
+    { type: 'comment', value: 'Outside comment part 2' },
+  ],
   sections: [
     {
       type: 'section',
@@ -50,3 +54,18 @@ export const result = {
     }
   ]
 };
+
+export const data = [
+  {
+    title: 'Unit',
+    settings: {
+      Description: 'Idle manager for Wayland',
+      ExecStart: 'echo  "some string"',
+      Alias: 'asdf',
+    },
+  },
+  {
+    title: 'Install',
+    settings: {},
+  }
+];

@@ -1,7 +1,4 @@
-export const content = `[Unit]
-Description=Idle manager for Wayland`;
-
-export const result = {
+export const input = {
   type: 'unitFile',
   comments: [],
   sections: [
@@ -19,3 +16,12 @@ export const result = {
     }
   ]
 };
+
+export const output = [
+  {
+    title: 'Unit',
+    settings: {
+      Description: 'Idle manager for Wayland',
+    },
+  }
+];

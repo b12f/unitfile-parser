@@ -1,4 +1,4 @@
-export default (parser) => {
+export default function visitorCreator(parser) {
   const BaseSQLVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
 
   return class UnitFileVisitor extends BaseSQLVisitorWithDefaults {
@@ -10,15 +10,11 @@ export default (parser) => {
     _comment(ctx) {
       return {
         type: "comment",
-        value: ctx.Comment.map(({ image }) => image.replace(/^\s/, '').replace(/\s$/, '')).join(''),
+        value: ctx.Comment.map(({ image }) => image.replace(/^#\s?/, '').replace(/\s$/, '')).join(''),
       };
     }
 
     comment(ctx) {
-      return this._comment(ctx);
-    }
-
-    commentLine(ctx) {
       return this._comment(ctx);
     }
 
@@ -33,7 +29,7 @@ export default (parser) => {
     }
 
     sectionStatement(ctx) {
-      const content = ctx.propertyStatement?.[0] || ctx.commentLine?.[0];
+      const content = ctx.propertyStatement?.[0] || ctx.comment?.[0];
       return this.visit(content);
     }
 
@@ -58,4 +54,4 @@ export default (parser) => {
       };
     }
   };
-};
+}

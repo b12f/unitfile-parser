@@ -1,9 +1,9 @@
-export const content = `[Install]
+export const string = `[Install]
 After=something.service
 After=something-else.service
 After=something-different.service`;
 
-export const result = {
+export const ast = {
   type: 'unitFile',
   comments: [],
   sections: [
@@ -34,3 +34,16 @@ export const result = {
     }
   ]
 };
+
+export const data = [
+  {
+    title: 'Install',
+    settings: {
+      After: [
+        'something.service',
+        'something-else.service',
+        'something-different.service',
+      ],
+    },
+  }
+];

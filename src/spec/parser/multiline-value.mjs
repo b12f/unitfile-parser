@@ -1,4 +1,4 @@
-export const content = `
+export const string = `
 [Service]
 ExecStart=/usr/bin/swayidle -w \\
           timeout 600 'swaylock-bg' \\
@@ -11,7 +11,7 @@ ExecPause=/usr/bin/swayidle -w \\
           after-resume 'swaylock-bg'#No space comment
 `;
 
-export const result = {
+export const ast = {
   type: 'unitFile',
   comments: [],
   sections: [
@@ -46,3 +46,18 @@ export const result = {
     }
   ]
 };
+
+export const data = [
+  {
+    title: 'Service',
+    settings: {
+      ExecStart: '/usr/bin/swayidle -w \\\n' +
+            "          timeout 600 'swaylock-bg' \\\n" +
+            `          timeout 900 'swaymsg "output * dpms off"' \\\n` +
+            `               resume 'swaymsg "output * dpms on"' \\\n` +
+            "          after-resume 'swaylock-bg'",
+      ExecStop: "/usr/bin/swayidle -w \\\n          after-resume 'swaylock-bg'",
+      ExecPause: "/usr/bin/swayidle -w \\\n          after-resume 'swaylock-bg'",
+    },
+  },
+];

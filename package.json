@@ -5,7 +5,7 @@
   "main": "src/mod.mjs",
   "type": "module",
   "scripts": {
-    "test": "node ./test/spec.mjs './test/examples/*.mjs'"
+    "test": "./scripts/run-tests"
   },
   "author": "",
   "license": "ISC",

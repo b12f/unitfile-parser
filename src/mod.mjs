@@ -1,30 +1,11 @@
 export { default as Lexer } from "./Lexer.mjs";
 export { default as Parser } from "./Parser.mjs";
-export { default as visitorCreator } from "./visitor.mjs";
+export { default as visitorCreator } from "./visitor-creator.mjs";
 
-import Parser from "./Parser.mjs";
-import Lexer from "./Lexer.mjs";
-import visitorCreator from "./visitor.mjs";
-
-export default (input) => {
-  const parser = new Parser([], { outputCst: true });
-  const lexingresult = Lexer.tokenize(input);
-
-  if (lexingresult.errors.length > 0) {
-    console.dir(lexingresult, { depth: Infinity });
-    throw new Error("Lexing errors detected")
-  }
-
-  parser.input = lexingresult.tokens;
-  const cst = parser.unitFile();
-
-  if (parser.errors.length > 0) {
-    console.dir(parser.errors, { depth: Infinity });
-    throw new Error("Parsing errors detected")
-  }
-
-  const Visitor = visitorCreator(parser);
-  const visitor = new Visitor();
-  const ast = visitor.visit(cst);
-  return ast;
-}
+export { default as stringToAst } from "./string-to-ast.mjs";
+export { default as stringToData } from "./string-to-data.mjs";
+export { default as astToData } from "./ast-to-data.mjs";
+export { default as astToString } from "./ast-to-string.mjs";
+export { default as astToSTring } from "./ast-to-string.mjs";
+export { default as dataToAst } from "./data-to-ast.mjs";
+export { default as dataToString } from "./data-to-string.mjs";
