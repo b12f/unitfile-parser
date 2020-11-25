@@ -1,11 +1,13 @@
-export const input = {
+export const string = `[Unit]
+Description=Idle manager for Wayland`;
+
+export const ast = {
   type: 'unitFile',
   comments: [],
   sections: [
     {
       type: 'section',
       title: 'Unit',
-      titleComment: undefined,
       body: [
         {
           type: 'setting',
@@ -17,7 +19,7 @@ export const input = {
   ]
 };
 
-export const output = [
+export const data = [
   {
     title: 'Unit',
     settings: {
