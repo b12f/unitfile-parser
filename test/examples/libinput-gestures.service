@@ -1,0 +1,13 @@
+[Unit]
+Description=Actions gestures on your touchpad using libinput
+Documentation=https://github.com/bulletmark/libinput-gestures
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+
+[Service]
+Type=simple
+ExecStart=python3 /usr/bin/libinput-gestures
+
+[Install]
+WantedBy=sway-session.target

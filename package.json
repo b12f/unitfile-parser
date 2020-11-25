@@ -1,0 +1,18 @@
+{
+  "name": "unitfile-parser",
+  "version": "1.0.0",
+  "description": "Parse systemd unit files",
+  "main": "src/mod.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "node ./test/spec.mjs './test/examples/*.mjs'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chevrotain": "^7.0.3"
+  },
+  "devDependencies": {
+    "glob": "^7.1.6"
+  }
+}

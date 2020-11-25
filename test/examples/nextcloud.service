@@ -1,0 +1,12 @@
+[Unit]
+Description=Nextcloud Client
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nextcloud --background
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
