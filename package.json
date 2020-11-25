@@ -1,5 +1,5 @@
 {
-  "name": "systemd-unitfile2",
+  "name": "unitfile-parser",
   "version": "1.0.0",
   "description": "Parse systemd unit files",
   "main": "src/mod.mjs",
