@@ -1,18 +1,15 @@
 {
-  "name": "unitfile-parser",
+  "name": "systemd-unitfile2",
   "version": "1.0.0",
   "description": "Parse systemd unit files",
   "main": "src/mod.mjs",
-  "type": "module",
+  "exports": "src/mod.mjs",
   "scripts": {
     "test": "./scripts/run-tests"
   },
   "author": "",
-  "license": "ISC",
+  "license": "LGPL-2.0-or-later",
   "dependencies": {
     "chevrotain": "^7.0.3"
   },
-  "devDependencies": {
-    "glob": "^7.1.6"
-  }
 }
