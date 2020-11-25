@@ -1,9 +1,9 @@
 {
   "name": "unitfile-parser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Parse systemd unit files",
-  "main": "src/mod.mjs",
-  "exports": "src/mod.mjs",
+  "main": "./src/mod.mjs",
+  "exports": "./src/mod.mjs",
   "scripts": {
     "test": "./scripts/run-tests"
   },
