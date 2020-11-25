@@ -37,6 +37,11 @@ export const Value = createToken({
   line_breaks: true,
   pop_mode: true,
 });
+export const CommentStartNewline = createToken({
+  name: "CommentStartNewline",
+  pattern: '\n#',
+  push_mode: "comment_mode",
+});
 export const CommentStart = createToken({
   name: "CommentStart",
   pattern: '#',
@@ -56,6 +61,7 @@ export const WhiteSpace = createToken({
 
 export const tokens = [
   CommentStart,
+  CommentStartNewline,
   Value,
   Comment,
   SectionHeading,
@@ -67,6 +73,7 @@ export default new Lexer({
   defaultMode: "line_mode",
   modes: {
     line_mode: [
+      CommentStartNewline,
       CommentStart,
       SectionHeading,
       Property,

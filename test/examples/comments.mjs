@@ -1,7 +1,7 @@
 export const content = `# Outside comment
 [Unit] # Heading comment
-# Inline comment
 Description=Idle manager for Wayland # End of value comment
+# Inline comment
 ExecStart=echo\
   "some string" # End of value comment
 Alias=asdf#Comment Without spaces
@@ -19,13 +19,13 @@ export const result = {
       title: 'Unit',
       titleComment: { type: 'comment', value: 'Heading comment' },
       body: [
-        { type: 'comment', value: 'Inline comment' },
         {
           type: 'setting',
           name: 'Description',
           value: 'Idle manager for Wayland',
           comment: { type: 'comment', value: 'End of value comment' }
         },
+        { type: 'comment', value: 'Inline comment' },
         {
           type: 'setting',
           name: 'ExecStart',
@@ -43,8 +43,10 @@ export const result = {
     {
       type: 'section',
       title: 'Install',
-      titleComment: { type: 'comment', value: 'Comment only in this body' },
-      body: []
+      titleComment: undefined,
+      body: [
+        { type: 'comment', value: 'Comment only in this body' },
+      ]
     }
   ]
 };

@@ -7,11 +7,19 @@ export default (parser) => {
       this.validateVisitor();
     };
 
-    comment(ctx) {
+    _comment(ctx) {
       return {
         type: "comment",
         value: ctx.Comment.map(({ image }) => image.replace(/^\s/, '').replace(/\s$/, '')).join(''),
       };
+    }
+
+    comment(ctx) {
+      return this._comment(ctx);
+    }
+
+    commentLine(ctx) {
+      return this._comment(ctx);
     }
 
     propertyStatement(ctx) {
@@ -25,7 +33,7 @@ export default (parser) => {
     }
 
     sectionStatement(ctx) {
-      const content = ctx.propertyStatement?.[0] || ctx.comment?.[0];
+      const content = ctx.propertyStatement?.[0] || ctx.commentLine?.[0];
       return this.visit(content);
     }
 

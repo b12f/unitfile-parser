@@ -6,7 +6,7 @@ import {
   visitorCreator,
 } from "../src/mod.mjs";
 
-const runTest = (input) => {
+const runTest = (input, result) => {
   const parser = new Parser([], { outputCst: true });
   const lexingresult = Lexer.tokenize(input);
 
@@ -26,7 +26,25 @@ const runTest = (input) => {
   const Visitor = visitorCreator(parser);
   const visitor = new Visitor();
   const ast = visitor.visit(cst);
-  return ast;
+
+  const resultString = JSON.stringify(ast, null, 2);
+  const expectedString = JSON.stringify(result, null, 2);
+  if (resultString !== expectedString) {
+    console.dir(ast, { depth: Infinity });
+    console.dir(lexingresult, { depth: Infinity });
+    throw new Error(`Mismatching result on testcase:
+${input}
+
+=======Result======
+
+${resultString}
+
+=======Expected======
+
+${expectedString}
+
+`);
+  }
 };
 
 (async () => {
@@ -45,35 +63,5 @@ const runTest = (input) => {
   );
 
   const cases = await Promise.all(files.flat().map(file => import(file)));
-
-  const results = cases.map(
-    ({ content, result }) => {
-      const ast = runTest(content);
-      const resultString = JSON.stringify(ast);
-      const expectedString = JSON.stringify(result);
-      if (resultString !== expectedString) {
-        console.dir(ast, { depth: Infinity });
-        throw new Error(`Mismatching result on testcase:
-${content}
-
-=======Result======
-
-${resultString}
-
-=======Expected======
-
-${expectedString}
-
-`);
-      }
-
-      return null;
-    },
-  )
-  .filter(r => r !== null);
-  
-  if (results.length) {
-    results.forEach(err => console.error(err));
-    throw new Error(`${results.length} failed tests`);
-  }
+  const results = cases.forEach(({ content, result }) => runTest(content, result));
 })();
