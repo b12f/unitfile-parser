@@ -119,5 +119,5 @@ Function that takes a parser and returns a visitor for that parser that would no
 
 ## Motivation
 
-There already is a `systemd-unitfile` package on npm, but it is unmaintainted and, especially when going frankly bad. It doesn't support multiline values, it gives a 
+There already is a `systemd-unitfile` package on npm, but it is unmaintainted and has some bad behaviour, like not recognizing multiline values.
 
