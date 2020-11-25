@@ -24,7 +24,7 @@ For most usecases, you'll only need two functions: `stringToData` and `dataToStr
 
 ```
 import { readFile, writeFile } from 'fs/promises';
-import { stringToData, dataToString } from 'systemd-unitfiles';
+import { stringToData, dataToString } from 'unitfile-parser';
 
 (async () => {
   const unitFilePath = '~/.config/systemd/user/xsettingsd.service';
@@ -56,7 +56,7 @@ Convert a unit file string to a JS AST.
 
 ```
 import { readFile } from 'fs/promises';
-import { stringToAst } from 'systemd-unitfiles';
+import { stringToAst } from 'unitfile-parser';
 
 readFile('~/.config/systemd/user/xsettingsd.service')
   .then(fileContents => {
@@ -84,7 +84,7 @@ Convert an ast to a valid unit file string.
 
 ```
 import { writeFile } from 'fs/promises';
-import { astToString } from 'systemd-unitfiles';
+import { astToString } from 'unitfile-parser';
 
 const ast = // some ast here
 
